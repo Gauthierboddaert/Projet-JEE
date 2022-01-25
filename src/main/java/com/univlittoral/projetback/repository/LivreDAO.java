@@ -1,0 +1,19 @@
+package com.univlittoral.projetback.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+
+import com.univlittoral.projetback.model.LivreDO;
+
+public interface LivreDAO extends JpaRepository<LivreDO, Long>{
+	@Query(value="SELECT * FROM livres  WHERE genre = :param order by nom ASC", nativeQuery=true)
+	public List<LivreDO> findAllbyGenre(@Param("param") String param);
+	
+	@Query(value="SELECT * FROM livres order by nom ASC", nativeQuery=true)
+	public List<LivreDO> findAllbLivres();
+	
+}
